@@ -1,0 +1,3 @@
+type JobDepartment = {
+  title: string;
+};

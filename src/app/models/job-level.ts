@@ -1,0 +1,3 @@
+type JobLevel = {
+  title: string;
+};
