@@ -44,7 +44,7 @@ const Page = async ({ searchParams }: { searchParams?: SearchParams }) => {
   )?.fields;
 
   return (
-    <div>
+    <div className='w-full'>
       <CareerHeader
         total={jobs?.total}
         locations={locations.items}
@@ -54,15 +54,24 @@ const Page = async ({ searchParams }: { searchParams?: SearchParams }) => {
         selectedLevel={selectedLevel}
         selectedDepartment={selectedDepartment}
       />
-      <CareerJobs jobs={jobs.items}></CareerJobs>
-      <div className='container mx-auto  '>
-        <div className='flex justify-center'>
-          <div className='w-full max-w-4xl pt-8 border-grey-200 border-t'>
-            <Pagination
-              total={jobs?.total}
-              page={currentPage}
-              size={currentSize}
-            ></Pagination>
+      <div className='w-auto lg:container mx-4 sm:mx-16 xl:mx-auto mb-8'>
+        <div className='grid grid-cols-4 md:grid-cols-6 lg:grid-cols-12 gap-4'>
+          <div className='lg:col-start-3 col-span-4 md:col-span-6 lg:col-span-8'>
+            {/* Job list */}
+            <div className='w-full mt-16 mb-12'>
+              <CareerJobs jobs={jobs.items}></CareerJobs>
+            </div>
+
+            {/** Pagination */}
+            <div className='flex justify-center '>
+              <div className='w-full pt-8 border-grey-200 border-t'>
+                <Pagination
+                  total={jobs?.total}
+                  currentPage={currentPage}
+                  pageSize={currentSize}
+                ></Pagination>
+              </div>
+            </div>
           </div>
         </div>
       </div>

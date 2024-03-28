@@ -73,18 +73,18 @@ export const CareerHeader = ({
   };
 
   return (
-    <div className='bg-grey-75 pt-24 pb-16'>
-      <div className='container mx-auto'>
-        <div>
-          <h2 className='text-sm md:text-base text-primary-600 font-bold text-center mb-3 md:mb-5'>
-            {total} offene Stellen bei Creditplus
-          </h2>
-          <h1 className='text-center text-3xl lg:text-5xl md:text-4xl text-secondary font-bold mb-6 md:mb-8'>
-            Hier beginnt deine Zukunft
-          </h1>
+    <div className='bg-grey-75 pt-24 pb-16 w-full'>
+      <div className='w-auto lg:container mx-4 sm:mx-16 xl:mx-auto mb-8'>
+        <h2 className='text-sm md:text-base text-primary-600 font-bold text-center mb-3 md:mb-5'>
+          {total} offene Stellen bei Creditplus
+        </h2>
+        <h1 className='text-center text-3xl lg:text-5xl md:text-4xl text-secondary font-bold mb-6 md:mb-8'>
+          Hier beginnt deine Zukunft
+        </h1>
 
-          <div className='dropdowns  justify-center grid grid-cols-12 gap-4'>
-            <div className=' lg:col-start-1 col-span-12 md:col-span-4 lg:col-span:3'>
+        <div className='justify-center grid grid-cols-4 md:grid-cols-6 lg:grid-cols-12 gap-4'>
+          <div className='lg:col-start-2 col-span-4 md:col-span-6 lg:col-span-10 flex gap-5 flex-col md:flex-row'>
+            <div className='w-full md:w-1/3'>
               <Dropdown
                 field='title'
                 items={departmentList}
@@ -93,7 +93,7 @@ export const CareerHeader = ({
                 selected={selectedDepartment}
               ></Dropdown>
             </div>
-            <div className='col-span-12 md:col-span-4 lg:col-span:3'>
+            <div className='w-full md:w-1/3'>
               <Dropdown
                 field='city'
                 items={locationList}
@@ -102,7 +102,8 @@ export const CareerHeader = ({
                 selected={selectedLocation}
               ></Dropdown>
             </div>
-            <div className='col-span-12 md:col-span-4 lg:col-span:3'>
+
+            <div className='w-full md:w-1/3'>
               <Dropdown
                 field='title'
                 items={levelList}

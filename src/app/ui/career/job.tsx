@@ -3,7 +3,7 @@ import { ClockIcon, MapPinIcon } from '@heroicons/react/24/outline';
 
 export const Job = ({ job }: { job: Job }) => {
   return (
-    <div className='rounded-2xl bg-grey-50 border border-grey-200 px-6 py-6 md:py-8 w-full max-w-4xl mx-auto'>
+    <div className='rounded-2xl bg-grey-50 border border-grey-200 px-6 py-6 md:py-8 w-full  mx-auto'>
       <div className='flex items-center justify-between text-sm text-primary-600 font-bold mb-2'>
         {/* Department */}
         <span>{job.department.fields.title}</span>
