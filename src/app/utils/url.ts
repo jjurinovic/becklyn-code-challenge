@@ -9,11 +9,10 @@ export const addUrlParam = ({
   field: string;
   value?: string;
 }) => {
-  const params = new URLSearchParams(searchParams);
   if (value) {
-    params.set(field, value);
+    searchParams.set(field, value);
   } else {
-    params.delete(field);
+    searchParams.delete(field);
   }
-  return `${pathname}?${params.toString()}`;
+  return `${pathname}?${searchParams.toString()}`;
 };

@@ -73,7 +73,7 @@ export default function Dropdown({
             >
               <Menu.Items
                 static
-                className='absolute right-0 z-10 mt-2 w-56 origin-top-right roundedlg bg-white shadow-lg '
+                className='absolute right-0 z-10 mt-2 w-56 origin-top-right roundedlg bg-grey-50 shadow-lg  w-full'
               >
                 <div className='py-1'>
                   {items.map((item, index) => (
