@@ -73,7 +73,7 @@ export const CareerHeader = ({
   };
 
   return (
-    <div className='bg-grey-75 pt-24 pb-16 w-full'>
+    <div className='bg-grey-75 pt-20 md:pt-32 lg:pt-44 pb-16 w-full'>
       <div className='w-auto lg:container mx-4 sm:mx-16 xl:mx-auto mb-8'>
         <h2 className='text-sm md:text-base text-primary-600 font-bold text-center mb-3 md:mb-5'>
           {total} offene Stellen bei Creditplus
