@@ -91,9 +91,10 @@ export default function Pagination({
         >
           <span
             className={classNames(
-              'relative inline-flex items-center rounded-full px-2 py-2 text-grey-600 hover:bg-primary-75 cursor-pointer',
-              isFirstSelected &&
-                'text-grey-200 cursor-not-allowed hover:bg-grey-50'
+              'relative inline-flex items-center rounded-full px-2 py-2 text-grey-600 ',
+              isFirstSelected
+                ? 'text-grey-200 cursor-not-allowed hover:bg-grey-50'
+                : 'hover:bg-primary-75 cursor-pointer'
             )}
             onClick={() => prevPage()}
           >
@@ -103,9 +104,10 @@ export default function Pagination({
           <div>{createPageNumbers()}</div>
           <span
             className={classNames(
-              'relative inline-flex items-center rounded-full px-2 py-2 text-grey-600 hover:bg-primary-75  cursor-pointer',
-              isLastSelected &&
-                'text-grey-200 cursor-not-allowed hover:bg-grey-50'
+              'relative inline-flex items-center rounded-full px-2 py-2 text-grey-600',
+              isLastSelected
+                ? 'text-grey-200 cursor-not-allowed hover:bg-grey-50'
+                : 'hover:bg-primary-75 cursor-pointer'
             )}
             onClick={() => nextPage()}
           >
