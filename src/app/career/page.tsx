@@ -62,16 +62,18 @@ const Page = async ({ searchParams }: { searchParams?: SearchParams }) => {
               <CareerJobs jobs={jobs.items}></CareerJobs>
             </div>
 
-            {/** Pagination */}
-            <div className='flex justify-center '>
-              <div className='w-full pt-8 border-grey-200 border-t'>
-                <Pagination
-                  total={jobs?.total}
-                  currentPage={currentPage}
-                  pageSize={currentSize}
-                ></Pagination>
+            {/* Show pagination only if there are jobs */}
+            {jobs.items.length > 0 && (
+              <div className='flex justify-center '>
+                <div className='w-full pt-8 border-grey-200 border-t'>
+                  <Pagination
+                    total={jobs?.total}
+                    currentPage={currentPage}
+                    pageSize={currentSize}
+                  ></Pagination>
+                </div>
               </div>
-            </div>
+            )}
           </div>
         </div>
       </div>

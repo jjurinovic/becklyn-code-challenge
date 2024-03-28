@@ -95,7 +95,7 @@ export default function Pagination({
             className={classNames(
               'relative inline-flex items-center rounded-full px-2 py-2 text-grey-600 ',
               isFirstSelected
-                ? 'text-grey-200 cursor-not-allowed hover:bg-grey-50'
+                ? 'opacity-30 cursor-not-allowed hover:bg-grey-50'
                 : 'hover:bg-primary-75 cursor-pointer'
             )}
             onClick={() => prevPage()}
@@ -122,7 +122,7 @@ export default function Pagination({
             className={classNames(
               'relative inline-flex items-center rounded-full px-2 py-2 text-grey-600',
               isLastSelected
-                ? 'text-grey-200 cursor-not-allowed hover:bg-grey-50'
+                ? 'opacity-30 cursor-not-allowed hover:bg-grey-50'
                 : 'hover:bg-primary-75 cursor-pointer'
             )}
             onClick={() => nextPage()}
