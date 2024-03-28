@@ -8,9 +8,15 @@ import {
   ChevronUpIcon,
 } from '@heroicons/react/20/solid';
 
-function classNames(...classes) {
-  return classes.filter(Boolean).join(' ');
-}
+import { classNames } from '../utils/style';
+
+type DropdownProps = {
+  placeholder: string;
+  items: any[];
+  field: string;
+  onSelect: (item: any, sameItem: boolean) => void;
+  selected?: any;
+};
 
 export default function Dropdown({
   placeholder,
@@ -18,13 +24,7 @@ export default function Dropdown({
   field,
   onSelect,
   selected,
-}: {
-  placeholder: string;
-  items: any[];
-  field: string;
-  onSelect: Function;
-  selected?: any;
-}) {
+}: DropdownProps) {
   // Render chevron up or down icon
   const renderIcon = (open: boolean) => {
     const attrs = {
@@ -36,6 +36,11 @@ export default function Dropdown({
     ) : (
       <ChevronUpIcon {...attrs} />
     );
+  };
+
+  // helper function for check if item is selected
+  const isSelectedItem = (selected?: any, currentItem?: any) => {
+    return selected ? selected[field] === currentItem[field] : false;
   };
 
   return (
@@ -73,27 +78,24 @@ export default function Dropdown({
             >
               <Menu.Items
                 static
-                className='absolute right-0 z-10 mt-2 w-56 origin-top-right roundedlg bg-grey-50 shadow-lg  w-full'
+                className='absolute right-0 max-h-80 overflow-x-auto z-10 mt-2 origin-top-right rounded-lg  bg-grey-50 shadow-lg  w-full outline-none'
               >
                 <div className='py-1'>
                   {items.map((item, index) => (
                     <Menu.Item key={index}>
                       <span
                         onClick={() =>
-                          onSelect(
-                            item,
-                            selected && selected[field] === item[field]
-                          )
+                          onSelect(item, isSelectedItem(selected, item))
                         }
                         className={classNames(
-                          selected && selected[field] === item[field]
+                          isSelectedItem(selected, item)
                             ? 'bg-primary-50 text-primary-700'
                             : 'text-grey-900',
                           'flex items-center justify-between px-4 py-3 text-sm cursor-pointer font-normal hover:bg-primary-50 hover:text-primary-700'
                         )}
                       >
                         {item[field]}
-                        {selected && selected[field] === item[field] && (
+                        {isSelectedItem(selected, item) && (
                           <CheckIcon className='h-4 w-4 text-primary-700'></CheckIcon>
                         )}
                       </span>
