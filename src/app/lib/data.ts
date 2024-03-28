@@ -16,7 +16,7 @@ export const fetchJobs = async ({
   if (!!department) {
     args = {
       ...args,
-      'fields.department.fields.title[match]': department,
+      'fields.department.fields.title': department,
       'fields.department.sys.contentType.sys.id': 'jobDepartment',
     };
   }
@@ -24,16 +24,14 @@ export const fetchJobs = async ({
   if (!!location) {
     args = {
       ...args,
-      'fields.locations.fields.title[match]': location,
-      'fields.locations.sys.contentType.sys.id': 'location',
+      'fields.locations.sys.id[in]': location,
     };
   }
 
   if (!!level) {
     args = {
       ...args,
-      'fields.levels.fields.title[match]': level,
-      'fields.levels.sys.contentType.sys.id': 'jobLevel',
+      'fields.levels.sys.id': level,
     };
   }
   return await client.getEntries(args);
