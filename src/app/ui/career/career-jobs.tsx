@@ -11,7 +11,7 @@ export const CareerJobs = ({ jobs }: { jobs: any }) => {
         <Job key={index} job={job}></Job>
       ))}
       {jobList.length === 0 && (
-        <p className='text-2xl text-center font-bold text-primary-900'>
+        <p className='text-xl md:text-2xl text-center font-bold text-primary-900'>
           Es gibt keine offenen Stellen.
         </p>
       )}
