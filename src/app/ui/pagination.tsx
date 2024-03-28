@@ -38,10 +38,11 @@ export default function Pagination({
           <span
             key={index}
             className={classNames(
-              'relative inline-flex rounded-full items-center px-4 py-2 text-sm font-semibold text-grey-600 hover:bg-primary-75 focus:z-20 focus:outline-offset-0 cursor-pointer',
+              'nav-list-item relative inline-flex rounded-full items-center px-4 py-2 text-sm font-semibold text-grey-600 hover:bg-primary-75 focus:z-20 focus:outline-offset-0 cursor-pointer',
               num === currentPage ? ' bg-primary-75 text-primary-600' : ''
             )}
             onClick={() => setPage(num)}
+            data-testid='list-item'
           >
             {num}
           </span>
@@ -89,7 +90,7 @@ export default function Pagination({
           className='flex items-center justify-between w-full text-sm'
           aria-label='Pagination'
         >
-          <span
+          <button
             className={classNames(
               'relative inline-flex items-center rounded-full px-2 py-2 text-grey-600 ',
               isFirstSelected
@@ -97,12 +98,22 @@ export default function Pagination({
                 : 'hover:bg-primary-75 cursor-pointer'
             )}
             onClick={() => prevPage()}
+            data-testid='prev-button'
           >
-            <ArrowLeftIcon className='h-4 w-4' aria-hidden='true' />
-            <span className='hidden sm:inline ml-2'>Vorherige</span>
-          </span>
+            <ArrowLeftIcon
+              data-testid='prev-button-icon'
+              className='h-4 w-4'
+              aria-hidden='true'
+            />
+            <span
+              className='hidden sm:inline ml-2'
+              data-testid='prev-button-text'
+            >
+              Vorherige
+            </span>
+          </button>
           <div>{createPageNumbers()}</div>
-          <span
+          <button
             className={classNames(
               'relative inline-flex items-center rounded-full px-2 py-2 text-grey-600',
               isLastSelected
@@ -110,10 +121,20 @@ export default function Pagination({
                 : 'hover:bg-primary-75 cursor-pointer'
             )}
             onClick={() => nextPage()}
+            data-testid='next-button'
           >
-            <span className='hidden sm:inline mr-2'>Nächste</span>
-            <ArrowRightIcon className='h-4 w-4' aria-hidden='true' />
-          </span>
+            <span
+              className='hidden sm:inline mr-2'
+              data-testid='next-button-text'
+            >
+              Nächste
+            </span>
+            <ArrowRightIcon
+              data-testid='next-button-icon'
+              className='h-4 w-4'
+              aria-hidden='true'
+            />
+          </button>
         </nav>
       </div>
     </div>
