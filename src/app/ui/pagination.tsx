@@ -1,68 +1,86 @@
 'use client';
+
 import { ArrowLeftIcon, ArrowRightIcon } from '@heroicons/react/20/solid';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 
+import { addUrlParam } from '../utils/url';
+import { usePagination } from '../hooks/usePagination';
+import { classNames } from '../utils/style';
+
+type PaginationProps = {
+  total: number;
+  currentPage: number;
+  pageSize: number;
+};
+
 export default function Pagination({
   total,
-  page,
-  size,
-}: {
-  total: number;
-  page: number;
-  size: number;
-}) {
+  currentPage,
+  pageSize,
+}: PaginationProps) {
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const { replace } = useRouter();
 
-  const createPageURL = (pageNumber: number | string) => {
-    const params = new URLSearchParams(searchParams);
-    params.set('page', pageNumber.toString());
-    return `${pathname}?${params.toString()}`;
-  };
+  const totalPages = Math.ceil(total / pageSize);
+  const paginationRange = usePagination({
+    currentPage,
+    total,
+    siblingCount: 1,
+    pageSize,
+  });
 
-  const setPage = (page: number | string) => {
-    replace(createPageURL(page));
-  };
-
-  const totalPages = Math.ceil(total / size);
-
+  // Create page numbers
   const createPageNumbers = () => {
-    const arr = Array.from(Array(totalPages).keys());
-    return arr.map((num) => {
-      if (num < 3 || num > totalPages - 3) {
+    return paginationRange?.map((num: number | string, index: number) => {
+      if (typeof num === 'number') {
         return (
-          <a
-            key={num + 1}
-            href='#'
-            className={
-              'relative inline-flex rounded-full items-center px-4 py-2 text-sm font-semibold text-grey-600 hover:bg-primary-75 focus:z-20 focus:outline-offset-0' +
-              (num + 1 === page ? ' bg-primary-75 text-primary-600' : '')
-            }
-            onClick={() => setPage(num + 1)}
+          <span
+            key={index}
+            className={classNames(
+              'relative inline-flex rounded-full items-center px-4 py-2 text-sm font-semibold text-grey-600 hover:bg-primary-75 focus:z-20 focus:outline-offset-0 cursor-pointer',
+              num === currentPage ? ' bg-primary-75 text-primary-600' : ''
+            )}
+            onClick={() => setPage(num)}
           >
-            {num + 1}
-          </a>
+            {num}
+          </span>
         );
+      } else {
+        return <span key={index}>{num}</span>;
       }
-      if (num === 4) {
-        return <span key={num + 1}>...</span>;
-      }
-      return '';
     });
   };
 
+  // Set page number in url
+  const setPage = (page: number | string) => {
+    const params = new URLSearchParams(searchParams);
+    replace(
+      addUrlParam({
+        searchParams: params,
+        pathname,
+        field: 'page',
+        value: page.toString(),
+      })
+    );
+  };
+
+  // handle next page click
   const nextPage = () => {
-    if (page < totalPages) {
-      setPage(page + 1);
+    if (currentPage < totalPages) {
+      setPage(currentPage + 1);
     }
   };
 
+  // handle previous page click
   const prevPage = () => {
-    if (page > 1) {
-      setPage(page - 1);
+    if (currentPage > 1) {
+      setPage(currentPage - 1);
     }
   };
+
+  const isFirstSelected = currentPage === 1;
+  const isLastSelected = currentPage === totalPages;
 
   return (
     <div className='flex items-center justify-between'>
@@ -72,7 +90,11 @@ export default function Pagination({
           aria-label='Pagination'
         >
           <span
-            className='relative inline-flex items-center rounded-full px-2 py-2 text-grey-600 hover:bg-primary-75 cursor-pointer'
+            className={classNames(
+              'relative inline-flex items-center rounded-full px-2 py-2 text-grey-600 hover:bg-primary-75 cursor-pointer',
+              isFirstSelected &&
+                'text-grey-200 cursor-not-allowed hover:bg-grey-50'
+            )}
             onClick={() => prevPage()}
           >
             <ArrowLeftIcon className='h-4 w-4' aria-hidden='true' />
@@ -80,7 +102,11 @@ export default function Pagination({
           </span>
           <div>{createPageNumbers()}</div>
           <span
-            className='relative inline-flex items-center rounded-full px-2 py-2 text-grey-600 hover:bg-primary-75  cursor-pointer'
+            className={classNames(
+              'relative inline-flex items-center rounded-full px-2 py-2 text-grey-600 hover:bg-primary-75  cursor-pointer',
+              isLastSelected &&
+                'text-grey-200 cursor-not-allowed hover:bg-grey-50'
+            )}
             onClick={() => nextPage()}
           >
             <span className='hidden sm:inline mr-2'>Nächste</span>
