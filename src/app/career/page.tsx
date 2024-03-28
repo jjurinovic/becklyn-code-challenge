@@ -15,7 +15,7 @@ const Page = async ({ searchParams }: { searchParams?: SearchParams }) => {
   // Fetch jobs
   const jobs: any = await fetchJobs({
     limit: currentSize,
-    skip: currentPage - 1,
+    skip: currentPage - 1, // Page numbers start from 1 and skip from 0
     department: searchParams?.department,
     level: searchParams?.level,
     location: searchParams?.location,
