@@ -1,5 +1,10 @@
 import { client } from '@/app/lib/contentful';
 
+/**
+ * Fetch all jobs
+ * @param {JobFilter} param0 job filter object
+ * @returns list of jobs
+ */
 export const fetchJobs = async ({
   limit,
   skip,
@@ -13,6 +18,7 @@ export const fetchJobs = async ({
     skip,
   };
 
+  // if department exist, add to filters
   if (!!department) {
     args = {
       ...args,
@@ -21,6 +27,7 @@ export const fetchJobs = async ({
     };
   }
 
+  // if location exist, add to filters
   if (!!location) {
     args = {
       ...args,
@@ -28,6 +35,7 @@ export const fetchJobs = async ({
     };
   }
 
+  // if level exist, add to filters
   if (!!level) {
     args = {
       ...args,
@@ -37,6 +45,7 @@ export const fetchJobs = async ({
   return await client.getEntries(args);
 };
 
+/** Fetch all job levels */
 export const fetchJobLevels = async () => {
   const levels = await client.getEntries({
     content_type: 'jobLevel',
@@ -44,6 +53,7 @@ export const fetchJobLevels = async () => {
   return levels;
 };
 
+/** Fetch all job locations */
 export const fetchJobLocations = async () => {
   const locations = await client.getEntries({
     content_type: 'location',
@@ -51,9 +61,10 @@ export const fetchJobLocations = async () => {
   return locations;
 };
 
+/** Fetch all job departments */
 export const fetchDepartments = async () => {
-  const locations = await client.getEntries({
+  const departments = await client.getEntries({
     content_type: 'jobDepartment',
   });
-  return locations;
+  return departments;
 };

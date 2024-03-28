@@ -39,7 +39,7 @@ export default function Dropdown({
   };
 
   // helper function for check if item is selected
-  const isSelectedItem = (selected?: any, currentItem?: any) => {
+  const isItemSelected = (selected?: any, currentItem?: any) => {
     return selected ? selected[field] === currentItem[field] : false;
   };
 
@@ -85,17 +85,17 @@ export default function Dropdown({
                     <Menu.Item key={index}>
                       <span
                         onClick={() =>
-                          onSelect(item, isSelectedItem(selected, item))
+                          onSelect(item, isItemSelected(selected, item))
                         }
                         className={classNames(
-                          isSelectedItem(selected, item)
+                          isItemSelected(selected, item)
                             ? 'bg-primary-50 text-primary-700'
                             : 'text-grey-900',
                           'flex items-center justify-between px-4 py-3 text-sm cursor-pointer font-normal hover:bg-primary-50 hover:text-primary-700'
                         )}
                       >
                         {item[field]}
-                        {isSelectedItem(selected, item) && (
+                        {isItemSelected(selected, item) && (
                           <CheckIcon className='h-4 w-4 text-primary-700'></CheckIcon>
                         )}
                       </span>

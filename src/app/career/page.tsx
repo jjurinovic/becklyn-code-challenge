@@ -12,7 +12,7 @@ const Page = async ({ searchParams }: { searchParams?: SearchParams }) => {
   const currentPage = Number(searchParams?.page) || 1;
   const currentSize = Number(searchParams?.size) || 5;
 
-  // Fetch jobs
+  // Fetch all jobs
   const jobs: any = await fetchJobs({
     limit: currentSize,
     skip: currentPage - 1, // Page numbers start from 1 and skip from 0
@@ -21,7 +21,7 @@ const Page = async ({ searchParams }: { searchParams?: SearchParams }) => {
     location: searchParams?.location,
   });
 
-  // Fetch data for filters
+  // Fetch all data for filters
   const [locations, levels, departments] = await Promise.all([
     fetchJobLocations(),
     fetchJobLevels(),

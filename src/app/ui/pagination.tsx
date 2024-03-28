@@ -30,8 +30,8 @@ export default function Pagination({
     pageSize,
   });
 
-  // Create page numbers
-  const createPageNumbers = () => {
+  // Render page numbers
+  const renderPageNumbers = () => {
     return paginationRange?.map((num: number | string, index: number) => {
       if (typeof num === 'number') {
         return (
@@ -80,8 +80,8 @@ export default function Pagination({
     }
   };
 
-  const isFirstSelected = currentPage === 1;
-  const isLastSelected = currentPage === totalPages;
+  const isFirstSelected = currentPage === 1; // true if first page is selected
+  const isLastSelected = currentPage === totalPages; // true if last page is selected
 
   return (
     <div className='flex items-center justify-between'>
@@ -90,6 +90,7 @@ export default function Pagination({
           className='flex items-center justify-between w-full text-sm'
           aria-label='Pagination'
         >
+          {/* Previus page */}
           <button
             className={classNames(
               'relative inline-flex items-center rounded-full px-2 py-2 text-grey-600 ',
@@ -112,7 +113,11 @@ export default function Pagination({
               Vorherige
             </span>
           </button>
-          <div>{createPageNumbers()}</div>
+
+          {/* Page numbers */}
+          <div>{renderPageNumbers()}</div>
+
+          {/** Next page */}
           <button
             className={classNames(
               'relative inline-flex items-center rounded-full px-2 py-2 text-grey-600',
