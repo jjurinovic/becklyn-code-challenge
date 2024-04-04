@@ -1,24 +1,34 @@
+'use client';
+import { useEffect, useState } from 'react';
 import { fetchDepartments } from '@/app/lib/data';
 
 import Dropdown from '../dropdown';
 import { ReadonlyURLSearchParams } from 'next/navigation';
 
-export const DepartmentDropdown = async ({
+export const DepartmentDropdown = ({
   replaceUrl,
   searchParams,
 }: {
   replaceUrl: (field: string, value?: string) => void;
   searchParams: ReadonlyURLSearchParams;
 }) => {
-  const departments = await fetchDepartments();
-  const departmentList: JobDepartment[] = departments.items.map(
-    (dep: any) => dep.fields
+  const [departments, setDepartments]: any = useState([]);
+  // selected department
+  const selectedDepartment = departments.find(
+    (department: any) => searchParams.get('department') === department.title
   );
 
-  // Find selected department from query param
-  const selectedDepartment = departments.items.find(
-    (department) => searchParams.get('department') === department.fields.title
-  )?.fields;
+  useEffect(() => {
+    const fetchData = async () => {
+      const result = await fetchDepartments();
+      const departmentList: JobDepartment[] = result.items.map(
+        (dep: any) => dep.fields
+      );
+      setDepartments(departmentList);
+    };
+
+    fetchData();
+  }, []);
 
   // set department in url query,  if isSelected is true, deselect item
   const setDepartment = (
@@ -31,7 +41,7 @@ export const DepartmentDropdown = async ({
   return (
     <Dropdown
       field='title'
-      items={departmentList}
+      items={departments}
       placeholder='Bereich'
       onSelect={setDepartment}
       selected={selectedDepartment}
