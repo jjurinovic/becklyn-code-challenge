@@ -1,14 +1,13 @@
-import {
-  fetchDepartments,
-  fetchJobLevels,
-  fetchJobLocations,
-  fetchJobs,
-} from '../lib/data';
+import { fetchJobs } from '../lib/data';
 import { CareerHeader } from '../ui/career/career-header';
 import { CareerJobs } from '../ui/career/career-jobs';
 import Pagination from '../ui/pagination';
 
-const Page = async ({ searchParams }: { searchParams?: SearchParams }) => {
+const CareerPage = async ({
+  searchParams,
+}: {
+  searchParams?: SearchParams;
+}) => {
   const currentPage = Number(searchParams?.page) || 1;
   const currentSize = Number(searchParams?.size) || 5;
 
@@ -21,39 +20,9 @@ const Page = async ({ searchParams }: { searchParams?: SearchParams }) => {
     location: searchParams?.location,
   });
 
-  // Fetch all data for filters
-  const [locations, levels, departments] = await Promise.all([
-    fetchJobLocations(),
-    fetchJobLevels(),
-    fetchDepartments(),
-  ]);
-
-  // Find selected location from query param
-  const selectedLocation = locations.items.find(
-    (location) => searchParams?.location === location.sys.id
-  )?.fields;
-
-  // Find selected level from query param
-  const selectedLevel = levels.items.find(
-    (level) => searchParams?.level === level.sys.id
-  )?.fields;
-
-  // Find selected department from query param
-  const selectedDepartment = departments.items.find(
-    (department) => searchParams?.department === department.fields.title
-  )?.fields;
-
   return (
     <div className='w-full'>
-      <CareerHeader
-        total={jobs?.total}
-        locations={locations.items}
-        departments={departments.items}
-        levels={levels.items}
-        selectedLocation={selectedLocation}
-        selectedLevel={selectedLevel}
-        selectedDepartment={selectedDepartment}
-      />
+      <CareerHeader total={jobs?.total} />
       <div className='w-auto lg:container mx-4 sm:mx-16 xl:mx-auto mb-8'>
         <div className='grid grid-cols-4 md:grid-cols-6 lg:grid-cols-12 gap-4'>
           <div className='lg:col-start-3 col-span-4 md:col-span-6 lg:col-span-8'>
@@ -81,4 +50,4 @@ const Page = async ({ searchParams }: { searchParams?: SearchParams }) => {
   );
 };
 
-export default Page;
+export default CareerPage;

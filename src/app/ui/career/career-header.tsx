@@ -1,33 +1,13 @@
 'use client';
 import { usePathname, useSearchParams, useRouter } from 'next/navigation';
+import { Suspense } from 'react';
 
-import Dropdown from '../dropdown';
 import { addUrlParam } from '@/app/utils/url';
+import { DepartmentDropdown } from './department-dropdown';
+import { LocationDropdown } from './location-dropdown';
+import { LevelDropdown } from './level-dropdown';
 
-export const CareerHeader = ({
-  total,
-  locations,
-  levels,
-  departments,
-  selectedLocation,
-  selectedLevel,
-  selectedDepartment,
-}: {
-  total: number;
-  locations: any;
-  levels: any;
-  departments: any;
-  selectedLocation?: any;
-  selectedLevel?: any;
-  selectedDepartment?: any;
-}) => {
-  // I have put any to props tpyes because it was easier
-  const locationList: JobLocation[] = locations.map((loc: any) => loc.fields);
-  const levelList: JobLevel[] = levels.map((level: any) => level.fields);
-  const departmentList: JobDepartment[] = departments.map(
-    (dep: any) => dep.fields
-  );
-
+export const CareerHeader = ({ total }: { total: number }) => {
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const { replace } = useRouter();
@@ -46,32 +26,6 @@ export const CareerHeader = ({
     );
   };
 
-  // set department in url query,  if isSelected is true, deselect item
-  const setDepartment = (
-    department: JobDepartment,
-    isSelected: boolean
-  ): void => {
-    replaceUrl('department', isSelected ? undefined : department.title);
-  };
-
-  // set location in url query, if isSelected is true, deselect item
-  const setLocation = (location: JobLocation, isSelected: boolean): void => {
-    const locationId =
-      location && !isSelected
-        ? locations.find((loc: any) => loc.fields.city === location.city).sys.id
-        : null;
-    replaceUrl('location', locationId);
-  };
-
-  // set job level in url query,  if isSelected is true, deselect item
-  const setLevel = (jobLevel: JobLevel, isSelected: boolean): void => {
-    const levelId = levels.find(
-      (level: any) => level.fields.title === jobLevel.title
-    ).sys.id;
-
-    replaceUrl('level', !isSelected ? levelId : undefined);
-  };
-
   return (
     <div className='bg-grey-75 pt-20 md:pt-32 lg:pt-44 pb-16 w-full'>
       <div className='w-auto lg:container mx-4 sm:mx-16 xl:mx-auto'>
@@ -85,32 +39,29 @@ export const CareerHeader = ({
         <div className='justify-center grid grid-cols-4 md:grid-cols-6 lg:grid-cols-12 gap-4'>
           <div className='lg:col-start-2 col-span-4 md:col-span-6 lg:col-span-10 flex gap-5 flex-col md:flex-row'>
             <div className='w-full md:w-1/3'>
-              <Dropdown
-                field='title'
-                items={departmentList}
-                placeholder='Bereich'
-                onSelect={setDepartment}
-                selected={selectedDepartment}
-              ></Dropdown>
+              <Suspense fallback={<h1>Loading</h1>}>
+                <DepartmentDropdown
+                  replaceUrl={replaceUrl}
+                  searchParams={searchParams}
+                />
+              </Suspense>
             </div>
             <div className='w-full md:w-1/3'>
-              <Dropdown
-                field='city'
-                items={locationList}
-                placeholder='Stadt'
-                onSelect={setLocation}
-                selected={selectedLocation}
-              ></Dropdown>
+              <Suspense fallback={<h1>Loading</h1>}>
+                <LocationDropdown
+                  replaceUrl={replaceUrl}
+                  searchParams={searchParams}
+                />
+              </Suspense>
             </div>
 
             <div className='w-full md:w-1/3'>
-              <Dropdown
-                field='title'
-                items={levelList}
-                placeholder='Erfahrungslevel'
-                onSelect={setLevel}
-                selected={selectedLevel}
-              ></Dropdown>
+              <Suspense fallback={<h1>Loading</h1>}>
+                <LevelDropdown
+                  replaceUrl={replaceUrl}
+                  searchParams={searchParams}
+                />
+              </Suspense>
             </div>
           </div>
         </div>
