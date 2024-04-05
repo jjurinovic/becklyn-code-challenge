@@ -57,7 +57,9 @@ export default function Dropdown({
               )}
             >
               {selected ? (
-                selected[field]
+                <span className='overflow-hidden text-ellipsis w-11/12'>
+                  {selected[field]}
+                </span>
               ) : (
                 <span className='text-grey-600 font-light'>{placeholder}</span>
               )}
