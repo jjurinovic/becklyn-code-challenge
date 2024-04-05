@@ -1,9 +1,10 @@
 import { ArrowUpRightIcon } from '@heroicons/react/20/solid';
 import { ClockIcon, MapPinIcon } from '@heroicons/react/24/outline';
+import { Card } from '../shared/card';
 
-export const Job = ({ job }: { job: Job }) => {
+export const JobCard = ({ job }: { job: Job }) => {
   return (
-    <div className='rounded-2xl bg-grey-50 border border-grey-200 px-6 py-6 md:py-8 w-full  mx-auto'>
+    <Card>
       <div className='flex items-center justify-between text-sm text-primary-600 font-bold mb-2'>
         {/* Department */}
         <span>{job.department.fields.title}</span>
@@ -32,6 +33,6 @@ export const Job = ({ job }: { job: Job }) => {
         <ClockIcon className='h-6 w-6 mr-2'></ClockIcon>
         <span>{job.type.fields.title}</span>
       </div>
-    </div>
+    </Card>
   );
 };

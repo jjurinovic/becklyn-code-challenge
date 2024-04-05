@@ -1,5 +1,5 @@
-import { CareerHeader } from '../_components/pages/career/career-header';
-import { CareerJobs } from '../_components/pages/career/career-jobs';
+import { CareerHeader } from '../_components/career/career-header';
+import { CareerJobs } from '../_components/career/career-jobs';
 import Pagination from '../_components/shared/pagination';
 import { fetchJobs } from '../_lib/data';
 

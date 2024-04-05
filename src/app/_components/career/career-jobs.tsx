@@ -1,6 +1,6 @@
 'use client';
 
-import { Job } from './job';
+import { JobCard } from './job-card';
 
 export const CareerJobs = ({ jobs }: { jobs: any }) => {
   const jobList = jobs.map((job: any) => job.fields);
@@ -8,7 +8,7 @@ export const CareerJobs = ({ jobs }: { jobs: any }) => {
   return (
     <div className='flex justify-center flex-col gap-5 '>
       {jobList.map((job: Job, index: number) => (
-        <Job key={index} job={job}></Job>
+        <JobCard key={index} job={job}></JobCard>
       ))}
       {jobList.length === 0 && (
         <p className='text-xl md:text-2xl text-center font-bold text-primary-900'>
