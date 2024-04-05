@@ -29,6 +29,7 @@ export const LocationDropdown = ({
   useEffect(() => {
     const fetchData = async () => {
       const result = await fetchJobLocations();
+
       setLocations(result);
     };
 
