@@ -1,9 +1,8 @@
 'use client';
 import { useEffect, useState } from 'react';
 import { ReadonlyURLSearchParams } from 'next/navigation';
-
-import { fetchJobLocations } from '@/app/lib/data';
-import Dropdown from '../dropdown';
+import { fetchJobLocations } from '@/app/_lib/data';
+import Dropdown from '../../shared/dropdown';
 
 export const LocationDropdown = ({
   replaceUrl,

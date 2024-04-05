@@ -1,4 +1,4 @@
-import { addUrlParam } from '@/app/utils/url';
+import { addUrlParam } from '@/app/_utils/url';
 
 describe('addUrlParam', () => {
   it('should return url with given param values', () => {

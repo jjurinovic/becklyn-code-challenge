@@ -2,8 +2,8 @@
 import { ReadonlyURLSearchParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
-import Dropdown from '../dropdown';
-import { fetchJobLevels } from '@/app/lib/data';
+import { fetchJobLevels } from '@/app/_lib/data';
+import Dropdown from '../../shared/dropdown';
 
 export const LevelDropdown = ({
   replaceUrl,

@@ -1,7 +1,7 @@
-import { fetchJobs } from '../lib/data';
-import { CareerHeader } from '../ui/career/career-header';
-import { CareerJobs } from '../ui/career/career-jobs';
-import Pagination from '../ui/pagination';
+import { CareerHeader } from '../_components/pages/career/career-header';
+import { CareerJobs } from '../_components/pages/career/career-jobs';
+import Pagination from '../_components/shared/pagination';
+import { fetchJobs } from '../_lib/data';
 
 const CareerPage = async ({
   searchParams,

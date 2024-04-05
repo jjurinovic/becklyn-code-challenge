@@ -2,7 +2,7 @@
 import { usePathname, useSearchParams, useRouter } from 'next/navigation';
 import { Suspense } from 'react';
 
-import { addUrlParam } from '@/app/utils/url';
+import { addUrlParam } from '@/app/_utils/url';
 import { DepartmentDropdown } from './department-dropdown';
 import { LocationDropdown } from './location-dropdown';
 import { LevelDropdown } from './level-dropdown';

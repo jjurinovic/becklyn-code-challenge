@@ -1,11 +1,10 @@
 'use client';
-
 import { ArrowLeftIcon, ArrowRightIcon } from '@heroicons/react/20/solid';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 
-import { addUrlParam } from '../utils/url';
-import { usePagination } from '../hooks/usePagination';
-import { classNames } from '../utils/style';
+import { usePagination } from '@/app/_hooks/usePagination';
+import { classNames } from '@/app/_utils/style';
+import { addUrlParam } from '@/app/_utils/url';
 
 type PaginationProps = {
   total: number;

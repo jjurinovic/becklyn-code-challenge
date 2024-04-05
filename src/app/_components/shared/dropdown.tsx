@@ -8,7 +8,7 @@ import {
   ChevronUpIcon,
 } from '@heroicons/react/20/solid';
 
-import { classNames } from '../utils/style';
+import { classNames } from '@/app/_utils/style';
 
 type DropdownProps = {
   placeholder: string;

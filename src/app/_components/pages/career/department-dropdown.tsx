@@ -1,9 +1,9 @@
 'use client';
 import { useEffect, useState } from 'react';
-import { fetchDepartments } from '@/app/lib/data';
-
-import Dropdown from '../dropdown';
 import { ReadonlyURLSearchParams } from 'next/navigation';
+
+import { fetchDepartments } from '@/app/_lib/data';
+import Dropdown from '../../shared/dropdown';
 
 export const DepartmentDropdown = ({
   replaceUrl,

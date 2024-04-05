@@ -1,4 +1,4 @@
-import { client } from '@/app/lib/contentful';
+import { client } from './contentful';
 
 /**
  * Fetch all jobs

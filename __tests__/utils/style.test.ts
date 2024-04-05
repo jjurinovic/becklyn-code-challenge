@@ -1,4 +1,4 @@
-import { classNames } from '@/app/utils/style';
+import { classNames } from '@/app/_utils/style';
 
 describe('classNames', () => {
   it('should return string from given classname values', () => {
