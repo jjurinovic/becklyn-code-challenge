@@ -57,7 +57,7 @@ export default function Dropdown({
               )}
             >
               {selected ? (
-                <span className='overflow-hidden text-ellipsis w-11/12'>
+                <span className='overflow-hidden text-ellipsis text-nowrap w-11/12'>
                   {selected[field]}
                 </span>
               ) : (
