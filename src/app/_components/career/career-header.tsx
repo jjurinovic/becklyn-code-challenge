@@ -15,7 +15,8 @@ export const CareerHeader = ({ total }: { total: number }) => {
   // helper function for replace url with params
   const replaceUrl = (field: string, value?: string): void => {
     const params = new URLSearchParams(searchParams);
-    params.set('page', '1');
+
+    params.delete('page');
     replace(
       addUrlParam({
         searchParams: params,
