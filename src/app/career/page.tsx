@@ -22,6 +22,9 @@ const CareerPage = async ({
     location: searchParams?.location,
   });
 
+  // map to Job array
+  const jobList: Job[] = jobs.items.map((job: any) => job.fields);
+
   return (
     <div className={styles.main}>
       {/* Header */}
@@ -33,11 +36,11 @@ const CareerPage = async ({
           <div className={styles.main_grid_column}>
             {/* Job list */}
             <div className={styles.jobs}>
-              <CareerJobs jobs={jobs.items}></CareerJobs>
+              <CareerJobs jobs={jobList}></CareerJobs>
             </div>
 
             {/* Show pagination only if there are jobs */}
-            {jobs.items.length > 0 && (
+            {jobList.length > 0 && (
               <div className={styles.pagination_container}>
                 <div className={styles.pagination}>
                   <Pagination

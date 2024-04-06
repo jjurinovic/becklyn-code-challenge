@@ -8,7 +8,7 @@ export const addUrlParam = ({
   pathname: string;
   field: string;
   value?: string;
-}) => {
+}): string => {
   if (value) {
     searchParams.set(field, value);
   } else {

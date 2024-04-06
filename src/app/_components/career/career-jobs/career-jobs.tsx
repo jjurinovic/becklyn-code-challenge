@@ -2,15 +2,17 @@
 
 import { JobCard } from '../job-card/job-card';
 
-export const CareerJobs = ({ jobs }: { jobs: any }) => {
-  const jobList = jobs.map((job: any) => job.fields);
+type CarrerJobsProps = {
+  jobs: Job[];
+};
 
+export const CareerJobs = ({ jobs }: CarrerJobsProps) => {
   return (
     <div className='flex justify-center flex-col gap-5 '>
-      {jobList.map((job: Job, index: number) => (
+      {jobs.map((job: Job, index: number) => (
         <JobCard key={index} job={job}></JobCard>
       ))}
-      {jobList.length === 0 && (
+      {jobs.length === 0 && (
         <p className='text-xl md:text-2xl text-center font-bold text-primary-900'>
           Es gibt keine offenen Stellen.
         </p>

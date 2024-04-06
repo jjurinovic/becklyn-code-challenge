@@ -52,8 +52,8 @@ export default function Dropdown({
             <Menu.Button
               className={classNames(
                 'inline-flex w-full justify-between gap-x-1.5 rounded-lg bg-white px-4 py-3 text-sm font-normal text-grey-900  border border-grey-300 focus:border-primary-300 focus:shadow focus:shadow-primary-100',
-                open ? 'border-primary-300 shadow-none' : '',
-                selected ? 'border-grey-600' : ''
+                open && 'border-primary-300 shadow-none',
+                selected && 'border-grey-600'
               )}
             >
               {selected ? (

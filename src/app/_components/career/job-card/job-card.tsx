@@ -2,7 +2,11 @@ import { ArrowUpRightIcon } from '@heroicons/react/20/solid';
 import { ClockIcon, MapPinIcon } from '@heroicons/react/24/outline';
 import { Card } from '../../shared/card/card';
 
-export const JobCard = ({ job }: { job: Job }) => {
+type JobCardProps = {
+  job: Job;
+};
+
+export const JobCard = ({ job }: JobCardProps) => {
   return (
     <Card>
       <div className='flex items-center justify-between text-sm text-primary-600 font-bold mb-2'>

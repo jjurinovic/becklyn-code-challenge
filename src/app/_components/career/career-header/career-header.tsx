@@ -7,7 +7,11 @@ import { DepartmentDropdown } from '../dropdowns/department-dropdown';
 import { LocationDropdown } from '../dropdowns/location-dropdown';
 import { LevelDropdown } from '../dropdowns/level-dropdown';
 
-export const CareerHeader = ({ total }: { total: number }) => {
+type CarrerHeaderProps = {
+  total: number;
+};
+
+export const CareerHeader = ({ total }: CarrerHeaderProps) => {
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const { replace } = useRouter();
