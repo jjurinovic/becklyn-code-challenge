@@ -1,0 +1,27 @@
+.main {
+  @apply w-full;
+}
+
+.main_container {
+  @apply w-auto lg:container mx-4 sm:mx-16 xl:mx-auto mb-8;
+}
+
+.main_grid {
+  @apply grid grid-cols-4 md:grid-cols-6 lg:grid-cols-12 gap-4;
+}
+
+.main_grid_column {
+  @apply lg:col-start-3 col-span-4 md:col-span-6 lg:col-span-8;
+}
+
+.jobs {
+  @apply w-full mt-16 mb-12;
+}
+
+.pagination_container {
+  @apply flex justify-center;
+}
+
+.pagination {
+  @apply w-full pt-8 border-grey-200 border-t;
+}

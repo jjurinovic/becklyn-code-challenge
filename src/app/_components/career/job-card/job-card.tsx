@@ -1,6 +1,6 @@
 import { ArrowUpRightIcon } from '@heroicons/react/20/solid';
 import { ClockIcon, MapPinIcon } from '@heroicons/react/24/outline';
-import { Card } from '../shared/card';
+import { Card } from '../../shared/card/card';
 
 export const JobCard = ({ job }: { job: Job }) => {
   return (

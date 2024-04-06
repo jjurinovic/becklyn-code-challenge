@@ -1,6 +1,6 @@
 'use client';
 
-import { JobCard } from './job-card';
+import { JobCard } from '../job-card/job-card';
 
 export const CareerJobs = ({ jobs }: { jobs: any }) => {
   const jobList = jobs.map((job: any) => job.fields);

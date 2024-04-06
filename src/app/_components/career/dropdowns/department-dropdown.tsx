@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { ReadonlyURLSearchParams } from 'next/navigation';
 
 import { fetchDepartments } from '@/app/_lib/data';
-import Dropdown from '../shared/dropdown';
+import Dropdown from '../../shared/dropdown/dropdown';
 
 export const DepartmentDropdown = ({
   replaceUrl,

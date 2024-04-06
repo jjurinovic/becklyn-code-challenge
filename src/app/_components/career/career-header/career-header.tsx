@@ -3,9 +3,9 @@ import { usePathname, useSearchParams, useRouter } from 'next/navigation';
 import { Suspense } from 'react';
 
 import { addUrlParam } from '@/app/_utils/url';
-import { DepartmentDropdown } from './department-dropdown';
-import { LocationDropdown } from './location-dropdown';
-import { LevelDropdown } from './level-dropdown';
+import { DepartmentDropdown } from '../dropdowns/department-dropdown';
+import { LocationDropdown } from '../dropdowns/location-dropdown';
+import { LevelDropdown } from '../dropdowns/level-dropdown';
 
 export const CareerHeader = ({ total }: { total: number }) => {
   const pathname = usePathname();

@@ -3,7 +3,7 @@ import { ReadonlyURLSearchParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
 import { fetchJobLevels } from '@/app/_lib/data';
-import Dropdown from '../shared/dropdown';
+import Dropdown from '../../shared/dropdown/dropdown';
 
 export const LevelDropdown = ({
   replaceUrl,
