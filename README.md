@@ -1,5 +1,15 @@
 ## **Code challange for job interview at [Becklyn](https://becklyn.com/).**
 
+### Fixed / Added:
+
+- new folder structure (private folders)
+- moved and fixed fetching data for dropdowns in dropdown components
+- refactored dropdown components
+- added types for data
+- added error handling file
+- dropdown style fixes and generic types
+- css module to career page
+
 ### Live version [https://becklyn-code-challenge.vercel.app/](https://becklyn-code-challenge.vercel.app/)
 
 ###
