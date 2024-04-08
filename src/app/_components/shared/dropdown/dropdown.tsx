@@ -10,21 +10,21 @@ import {
 
 import { classNames } from '@/app/_utils/style';
 
-type DropdownProps = {
+interface DropdownProps<T, K extends keyof T> {
   placeholder: string;
-  items: any[];
-  field: string;
-  onSelect: (item: any, sameItem: boolean) => void;
-  selected?: any;
-};
+  items: T[];
+  field: K;
+  onSelect: (item: T, sameItem: boolean) => void;
+  selected?: T;
+}
 
-export default function Dropdown({
+export default function Dropdown<T, K extends keyof T>({
   placeholder,
   items,
   field,
   onSelect,
   selected,
-}: DropdownProps) {
+}: DropdownProps<T, K>) {
   // Render chevron up or down icon
   const renderIcon = (open: boolean) => {
     const attrs = {
@@ -39,8 +39,10 @@ export default function Dropdown({
   };
 
   // helper function for check if item is selected
-  const isItemSelected = (selected?: any, currentItem?: any) => {
-    return selected ? selected[field] === currentItem[field] : false;
+  const isItemSelected = (selected?: T, currentItem?: T) => {
+    return selected && currentItem
+      ? selected[field] === currentItem[field]
+      : false;
   };
 
   return (
@@ -58,7 +60,7 @@ export default function Dropdown({
             >
               {selected ? (
                 <span className='overflow-hidden text-ellipsis text-nowrap w-11/12'>
-                  {selected[field]}
+                  {String(selected[field])}
                 </span>
               ) : (
                 <span className='text-grey-600 font-light'>{placeholder}</span>
@@ -96,7 +98,7 @@ export default function Dropdown({
                           'flex items-center justify-between px-4 py-3 text-sm cursor-pointer font-normal hover:bg-primary-50 hover:text-primary-700'
                         )}
                       >
-                        {item[field]}
+                        {String(item[field])}
                         {isItemSelected(selected, item) && (
                           <CheckIcon className='h-4 w-4 text-primary-700'></CheckIcon>
                         )}
