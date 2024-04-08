@@ -44,28 +44,19 @@ export const CareerHeader = ({ total }: CarrerHeaderProps) => {
         <div className='justify-center grid grid-cols-4 md:grid-cols-6 lg:grid-cols-12 gap-4'>
           <div className='lg:col-start-2 col-span-4 md:col-span-6 lg:col-span-10 flex gap-5 flex-col md:flex-row'>
             <div className='w-full md:w-1/3'>
-              <Suspense fallback={<h1>Loading</h1>}>
-                <DepartmentDropdown
-                  replaceUrl={replaceUrl}
-                  searchParams={searchParams}
-                />
+              <Suspense fallback={<h1>Loading departments...</h1>}>
+                <DepartmentDropdown replaceUrl={replaceUrl} />
               </Suspense>
             </div>
             <div className='w-full md:w-1/3'>
-              <Suspense fallback={<h1>Loading</h1>}>
-                <LocationDropdown
-                  replaceUrl={replaceUrl}
-                  searchParams={searchParams}
-                />
+              <Suspense fallback={<h1>Loading locations...</h1>}>
+                <LocationDropdown replaceUrl={replaceUrl} />
               </Suspense>
             </div>
 
             <div className='w-full md:w-1/3'>
               <Suspense fallback={<h1>Loading</h1>}>
-                <LevelDropdown
-                  replaceUrl={replaceUrl}
-                  searchParams={searchParams}
-                />
+                <LevelDropdown replaceUrl={replaceUrl} />
               </Suspense>
             </div>
           </div>
